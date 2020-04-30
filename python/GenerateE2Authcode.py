@@ -14,14 +14,8 @@ def generateParamsIn(paymentParameters: typing.Dict[str, str]) -> str:
     :return paramsIn:
     """
 
-    paramsIn = ""
-    for key in paymentParameters.keys():
-        if key is not "MERCHANT_HASH":
-            paramsIn += f"{key},"
-
-    # Remove trailing comma ','
-    return paramsIn[:-1]
-
+    paramsIn = [key for key in paymentParameters.keys() if key != "MERCHANT_HASH"]
+    return ",".join(paramsIn)
 
 def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
     """
@@ -30,15 +24,9 @@ def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
     :return authcode:
     """
 
-    authcodeString = ""
-    for value in paymentParameters.values():
-        authcodeString += f"{value}|"
-
-    # Remove trailing pipe '|'
-    authcodeString = authcodeString[:-1]
+    authcodeString = "|".join([str(value) for value in paymentParameters.values()])
     base64Authcode = str.encode(authcodeString)
     return hashlib.sha256(base64Authcode).hexdigest().upper()
-
 
 def formatHTML(params: typing.Dict[str, str]) -> None:
     """
