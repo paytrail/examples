@@ -40,10 +40,28 @@ def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
     return hashlib.sha256(base64Authcode).hexdigest().upper()
 
 
+def formatHTML(params: typing.Dict[str, str]) -> None:
+    """
+    Formats and prints paymentParameters as working HTML form
+
+    :param params:
+    :return None:
+    """
+
+    inputs = "\n".join([f'{"":4}<input name="{key}" type="hidden" value="{value}">' for key, value in params.items()])
+
+    print("HTML form for testing")
+    print("----------------------")
+    print('<form action="https://payment.paytrail.com/e2" method="post">')
+    print(inputs)
+    print(f'{"":4}<input type="submit" value="Pay here">')
+    print("</form>")
+
+
 # Demo merchant id and hash
 merchantId = 13466
 merchantHash = "6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ"
-amount = 1
+amount = 59
 paymentMethods = "1,2"
 
 # See accepted parameters from https://docs.paytrail.com/en/ch04s03.html#idm4814369536
@@ -60,11 +78,4 @@ paymentParameters = {
 }
 paymentParameters["PARAMS_IN"] = generateParamsIn(paymentParameters)
 paymentParameters.update({"AUTHCODE": generateAuthcode(paymentParameters)})
-
-html ='<form action="https://payment.paytrail.com/e2" method="post">\n'
-for key, value in paymentParameters.items():
-    html += f'      <input name="{key}" type="hidden" value="{value}">\n'
-html += '   <input type="submit" value="Pay here">\n</form>'
-
-print("Html form to test:")
-print(html)
+formatHTML(paymentParameters)
