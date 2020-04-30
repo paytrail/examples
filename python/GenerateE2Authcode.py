@@ -15,7 +15,7 @@ def generateParamsIn(paymentParameters: typing.Dict[str, str]) -> str:
     """
 
     paramsIn = ""
-    for key, value in paymentParameters.items():
+    for key in paymentParameters.keys():
         if key is not "MERCHANT_HASH":
             paramsIn += f"{key},"
 
@@ -31,7 +31,7 @@ def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
     """
 
     authcodeString = ""
-    for key, value in paymentParameters.items():
+    for value in paymentParameters.values():
         authcodeString += f"{value}|"
 
     # Remove trailing pipe '|'
