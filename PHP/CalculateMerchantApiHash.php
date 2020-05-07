@@ -35,8 +35,7 @@ $requestContent = json_encode($content);
 {"rows":[{"amount":1000,"description":"Test Product","vatPercent":2400}],"email":"customer@email.com","notifyUrl":"https:\/\/url.to.shop\/apiNotification\/"}
 */
 
-$method = 'POST'; // For creating refund, method is POST
-$timestamp = '2020-05-01T12:00:00+0300'; // 2020-05-01T12:00:00+0300
+$timestamp = (new DateTime())->format(DateTimeInterface::RFC3339); // 2020-05-01T12:00:00+0300
 
 $md5Hash = hash('md5', $requestContent, true); // MD5 hash is in binary
 $contentMd5 = base64_encode($md5Hash); // nYDNvmvsxI4ZxJL8OghRTw==
