@@ -57,7 +57,7 @@ nYDNvmvsxI4ZxJL8OghRTw==
 
 $hashHmac = hash_hmac('sha256', $hashHmacContent, $merchantSecret, true); // Merchant secret is used as key, result is in binary
 
-$authenticationHash = base64_encode($hashHmac); // YqpU4WCsnBn7XLOqNd29bu/qfybVP4kIsbeOKOrSifU
+$authenticationHash = base64_encode($hashHmac); // YqpU4WCsnBn7XLOqNd29bu/qfybVP4kIsbeOKOrSifU=
 
 // Message headers
 $requestHeaders = [
