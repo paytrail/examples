@@ -25,8 +25,7 @@ def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
     """
 
     authcodeString = "|".join([str(value) for value in paymentParameters.values()])
-    base64Authcode = str.encode(authcodeString)
-    return hashlib.sha256(base64Authcode).hexdigest().upper()
+    return hashlib.sha256(b"{authcodeString}").hexdigest().upper()
 
 def formatHTML(params: typing.Dict[str, str]) -> None:
     """
