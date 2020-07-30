@@ -1,0 +1,18 @@
+{
+  "name": "front-end",
+  "version": "0.0.0",
+  "description": "Webcomponent front-end following open-wc recommendations",
+  "author": "front-end",
+  "license": "MIT",
+  "scripts": {
+    "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
+  },
+  "dependencies": {
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0",
+    "pay-trail-e2": "0.0.5"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.5.0"
+  }
+}
