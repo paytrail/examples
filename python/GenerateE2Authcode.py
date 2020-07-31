@@ -7,6 +7,7 @@ This is an example how to calculate AUTHCODE Paytrail E2 payment interface.
 More information about AUTHCODE can be found in: https://docs.paytrail.com/payments/e2-interface/authcode/
 """
 
+
 def generateParamsIn(paymentParameters: typing.Dict[str, str]) -> str:
     """
     Generates PARAMS_IN parameter from paymentParameters
@@ -17,6 +18,7 @@ def generateParamsIn(paymentParameters: typing.Dict[str, str]) -> str:
     paramsIn = [key for key in paymentParameters.keys() if key != "MERCHANT_HASH"]
     return ",".join(paramsIn)
 
+
 def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
     """
     Generates authcode for E2 payment
@@ -26,6 +28,7 @@ def generateAuthcode(paymentParameters: typing.Dict[str, str]) -> str:
 
     authcodeString = "|".join([str(value) for value in paymentParameters.values()])
     return hashlib.sha256(str.encode(authcodeString)).hexdigest().upper()
+
 
 def formatItemRows(itemRows) -> dict:
     """
@@ -42,9 +45,10 @@ def formatItemRows(itemRows) -> dict:
     items = {}
     for title, item in itemRows.items():
         for index, value in enumerate(item):
-           items[f"{title}[{index}]"] = value
+            items[f"{title}[{index}]"] = value
 
     return items
+
 
 def formatHTML(params: typing.Dict[str, str]) -> None:
     """
@@ -76,12 +80,12 @@ paymentParameters = {
     "MERCHANT_ID": merchantId,
     "URL_SUCCESS": "https://test.url.com/success",
     "URL_CANCEL": "https://test.url.com/cancel",
-    "ORDER_NUMBER": f"ORDER-{random.randrange(1, 9000)}",
+    "ORDER_NUMBER": f"PYTHON-EXAMPLE-ORDER-{random.randrange(1, 9000)}",
     "PARAMS_IN": "",
     "PARAMS_OUT": "PAYMENT_ID,TIMESTAMP,STATUS",
     "PAYMENT_METHODS": paymentMethods,
     "MSG_UI_MERCHANT_PANEL": "Message",
-    "AMOUNT": amount, #Item rows and AMOUNTS shouldn't be provided at the same time, remove this to submit item rows
+    #"AMOUNT": amount,  # Item rows and AMOUNTS shouldn't be provided at the same time, remove this to submit item rows
     "URL_NOTIFY": "https://test.url.com/notify",
     "LOCALE": "fi_FI",
     "CURRENCY": "EUR",
@@ -95,7 +99,7 @@ paymentParameters = {
     "PAYER_PERSON_ADDR_POSTAL_CODE": "23131",
     "PAYER_PERSON_ADDR_TOWN": "Test town",
     "PAYER_PERSON_ADDR_COUNTRY": "Test country",
-    "VAT_IS_INCLUDED": "0", #This is only used when item rows are provided
+    "VAT_IS_INCLUDED": "0",  # This is only used when item rows are provided
     "ALG": "1"
 }
 
@@ -139,7 +143,7 @@ itemRows = {
 # Discards item rows and VAT_IS_INCLUDED if AMOUNT is present in payment parameters
 if "AMOUNT" in paymentParameters:
     itemRows = {}
-    del paymentParameters['VAT_IS_INCLUDED'];
+    del paymentParameters['VAT_IS_INCLUDED']
 
 itemRows = formatItemRows(itemRows)
 
