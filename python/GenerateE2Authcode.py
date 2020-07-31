@@ -85,7 +85,7 @@ paymentParameters = {
     "PARAMS_OUT": "PAYMENT_ID,TIMESTAMP,STATUS",
     "PAYMENT_METHODS": paymentMethods,
     "MSG_UI_MERCHANT_PANEL": "Message",
-    #"AMOUNT": amount,  # Item rows and AMOUNTS shouldn't be provided at the same time, remove this to submit item rows
+    #"AMOUNT": amount,  # Item rows and AMOUNT shouldn't be provided at the same time, remove this to submit item rows
     "URL_NOTIFY": "https://test.url.com/notify",
     "LOCALE": "fi_FI",
     "CURRENCY": "EUR",
