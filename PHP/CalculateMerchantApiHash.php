@@ -11,7 +11,7 @@ $paymentId = 102402728626; // Payment id is returned after returning from paymen
 $merchantId = 13466;
 $merchantSecret = '6pKF4jkv97zmqBJ3ZL8gUw5DfT2NMQ';
 
-$url = '/payments/' . $paymentId . '/refunds';
+$url = '/merchant/v1/payments/' . $paymentId . '/refunds';
 $method = 'POST'; // Creating refund uses POST method
 
 // Product we want to refund
@@ -49,7 +49,7 @@ $hashHmacContent = implode("\n", [
 ]);
 /* This will output following string with line break character \n
 POST
-/payments/102402728626/refunds
+/merchant/v1/payments/102402728626/refunds
 PaytrailMerchantAPI 13466
 2020-05-01T12:00:00+0300
 nYDNvmvsxI4ZxJL8OghRTw==
@@ -57,7 +57,7 @@ nYDNvmvsxI4ZxJL8OghRTw==
 
 $hashHmac = hash_hmac('sha256', $hashHmacContent, $merchantSecret, true); // Merchant secret is used as key, result is in binary
 
-$authenticationHash = base64_encode($hashHmac); // FC3VbM1exdamMZ03z8gKt4WA/R0BFsDPo6YSh64vBbU=
+$authenticationHash = base64_encode($hashHmac); // tc51Vrg3HuLvwE1v0vul95Ux2hIE+COC3kT4EohrqTI=
 
 // Message headers
 $requestHeaders = [
@@ -68,4 +68,4 @@ $requestHeaders = [
 ];
 
 // Request body is $requestContent variable set earlier.
-// Request is sent to 'https://api.paytrail.com/merchant/v1' . $url
+// Request is sent to 'https://api.paytrail.com/' . $url
