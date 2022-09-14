@@ -14,7 +14,7 @@ $headers = [
 ];
 
 $body = [
-    'stamp' =>  'e77880bd52bd45559bbd0467ffa86b77', // Unique indentifier for payment
+    'stamp' =>  'e77880bd52bd45559bbd0467ffa86b77', // Unique identifier for payment
     'reference' => '3759170',
     'amount' => 1525,
     'currency' => 'EUR',
