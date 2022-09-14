@@ -27,13 +27,13 @@ $successUrl = 'https://webshopUrl/success';
 $cancelledUrl = 'https://webshopUrl/cancel';
 
 // Create customer with minimum values
-$customer = new Customer();
-$customer->setEmail($email);
+$customer = (new Customer())
+    ->setEmail($email);
 
 // Set minimum required callback urls
-$redirectUrls = new CallbackUrl();
-$redirectUrls->setSuccess($successUrl);
-$redirectUrls->setCancel($cancelledUrl);
+$redirectUrls = (new CallbackUrl())
+    ->setSuccess($successUrl)
+    ->setCancel($cancelledUrl);
 
 // Instantiate Paytrail Client
 $client = new Client($merchantId, $merchantPass, $platformName);
@@ -54,6 +54,7 @@ try {
     $payment = $client->createPayment($paymentRequest);
 } catch (\Exception $e) {
     echo $e->getMessage();
+    die();
 }
 
 // Print out link to payment page
